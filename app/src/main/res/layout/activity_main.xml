@@ -1,16 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/bg"
+    android:orientation="horizontal"
+    android:weightSum="100"
     tools:context="com.jungmok.perfect_blue.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/LL2"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="85">
+
+        <TextView
+            android:id="@+id/tvbluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="bluetooth"
+            android:textSize="15dp"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:text="Connect"
+            android:id="@+id/bConnect"
+            android:layout_gravity="center_horizontal"
+            android:textSize="10dp"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:text="Disconnect"
+            android:id="@+id/bDisconnect"
+            android:layout_gravity="center_horizontal"
+            android:textSize="10dp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Control"
+            android:id="@+id/tvControl"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15dp"
+            android:textColor="@color/white"/>
+
+        <ToggleButton
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:checked="false"
+            android:textOff="Start Stream"
+            android:textOn="Stop Stream"
+            android:id="@+id/tbStream"
+            android:textColor="@color/white"/>
+
+        <ToggleButton
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:checked="true"
+            android:textOff="Auto Scroll X"
+            android:textOn="Auto Scroll X"
+            android:id="@+id/tbScroll"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"/>
+
+        <ToggleButton
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:checked="true"
+            android:textOff="Lock   Xaxis"
+            android:textOn="Lock   Xaxis"
+            android:id="@+id/tbLock"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"/>
+
+        <LinearLayout
+            android:id="@+id/LLX"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100"
+            >
+
+            <Button
+                android:id="@+id/bXminus"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="-"
+                android:textSize="12dp"
+                android:textColor="@color/white"
+                android:layout_weight="50"
+                />
+
+            <Button
+                android:id="@+id/bXplus"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="+"
+                android:textSize="12dp"
+                android:textColor="@color/white"
+                android:layout_weight="50"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
