@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.util.Log;
+import android.os.Handler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -74,7 +76,7 @@ public class Mybluetooth extends AppCompatActivity implements AdapterView.OnItem
         }
     }
 
-    private void getPairedDevices()
+    private void startDiscovery()
     {
         btAdaptor.cancelDiscovery();
         btAdaptor.startDiscovery();
@@ -87,7 +89,7 @@ public class Mybluetooth extends AppCompatActivity implements AdapterView.OnItem
 
     }
 
-    private void startDiscovery()
+    private void getPairedDevices()
     {
         devicesArray = btAdaptor.getBondedDevices();
         if (devicesArray.size()>0)
@@ -129,7 +131,7 @@ public class Mybluetooth extends AppCompatActivity implements AdapterView.OnItem
                             s="(Paired)";
                             break;
                         }
-                    }listAdaptor.add(device.getName()+""+s+""+"\n"+device.getAddress());
+                    }listAdaptor.add(device.getName()+" "+s+" "+"\n"+device.getAddress());
                 }
                 else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action))
                 {
@@ -293,8 +295,7 @@ public class Mybluetooth extends AppCompatActivity implements AdapterView.OnItem
                     // Read from the InputStream
                     bytes = mmInStream.read(buffer);
                     // Send the obtained bytes to the UI activity
-                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
+                    mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer).sendToTarget();
                 } catch (IOException e)
                 {
                     break;
@@ -308,10 +309,19 @@ public class Mybluetooth extends AppCompatActivity implements AdapterView.OnItem
             try
             {
                 mmOutStream.write(income.getBytes());
+
+                    mmOutStream.write(income.getBytes());
+                    for (int i=0; i<income.getBytes().length; i++)
+                    {
+                        Log.v("outstream"+Integer.toString(i), Character.toString((char)(Integer.parseInt(Byte.toString(income.getBytes()[i])))));
+
+                    }
                 try
                 {
                     Thread.sleep(20);
-                }catch (InterruptedException e)
+                }
+
+                catch (InterruptedException e)
                 {
                     e.printStackTrace();
                 }
